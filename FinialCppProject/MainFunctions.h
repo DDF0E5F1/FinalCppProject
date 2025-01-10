@@ -10,11 +10,14 @@ struct LinearSystem
 	int size;
 };
 
+//фукция для повторного ввода в консоли
+void CinStreamClear();
+
 //ввод данных
 bool UserInput(LinearSystem& system);
 
 //вычисление детерминанта
-bool ComputeDeterminant(const vector<vector<double>>& matrix, double& determinant);
+double ComputeDeterminant(const vector<vector<double>>& matrix);
 
 //для создания матрицы с заменённой колонкой
 vector<vector<double>> ReplaceColumn(const vector<vector<double>>& matrix, const vector<double>& column, int colIndex);
@@ -27,3 +30,6 @@ void PrintMatrix(const vector<vector<double>>& matrix);
 
 //вывод вектора на консоль
 void PrintVector(const vector<double>& vector);
+
+//функция для реализации продолжения ввода в консоль
+bool UserTryAgain();

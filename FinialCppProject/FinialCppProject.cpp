@@ -4,31 +4,37 @@
 #include "MainFunctions.h"
 
 using namespace std;
+using std::vector;
 
 int main()
 {
-    setlocale(LC_ALL, "rus");
+	setlocale(LC_ALL, "rus");
 
-    LinearSystem system;
+	do {
+		LinearSystem system;
+		vector<double> solution;
 
-    if (!UserInput(system)) {
-        cerr << "Ошибка: превышено количество попыток ввода данных!" << endl;
-        return 1;
-    }
+		if (!UserInput(system)) {
+			cerr << "Ошибка: превышено количество попыток ввода данных!" << endl;
+			return 1;
+		}
 
-    cout << "Введённая матрица коэффициентов:" << endl;
-    PrintMatrix(system.coefficients);
+		cout << "Введённая матрица коэффициентов:" << endl;
+		PrintMatrix(system.coefficients);
 
-    cout << "Введённый вектор правой части:" << endl;
-    PrintVector(system.constants);
+		cout << "Введённый вектор правой части:" << endl;
+		PrintVector(system.constants);
 
-    vector<double> solution;
-    if (SolveSystem(system, solution)) {
-        cout << "Решение системы:" << endl;
-        PrintVector(solution);
-    }
-    else
-        cerr << "Система не может быть решена (например, вырожденная матрица или несовместная система." << endl;
+		if (SolveSystem(system, solution)) {
+			cout << "Решение системы:" << endl;
+			PrintVector(solution);
+		}
+		else
+			cerr << "Система не может быть решена (например, вырожденная матрица или несовместная система." << endl;
 
-    return 0;
+	} while (UserTryAgain());
+
+	cout << "Спасибо за использование программы!" << endl;
+
+	return 0;
 }
